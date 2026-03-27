@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Deal Property — Shoot Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0e;
+    --surface: #161614;
+    --surface2: #1e1e1b;
+    --border: #2a2a27;
+    --accent: #d4ff3c;
+    --accent-dim: rgba(212,255,60,0.08);
+    --text: #e8e6df;
+    --muted: #7a7870;
+    --muted2: #4a4845;
+    --tag-edu: #3caaff;
+    --tag-trust: #a78bfa;
+    --tag-trend: #fb923c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .hero {
+    border-bottom: 1px solid var(--border);
+    padding: 60px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(212,255,60,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(212,255,60,0.2);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero-tag::before { content: '●'; font-size: 8px; }
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    max-width: 700px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 600px;
+  }
+
+  /* ── META STRIP ── */
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .meta-item {
+    flex: 1;
+    min-width: 160px;
+    padding: 20px 48px;
+    border-right: 1px solid var(--border);
+  }
+  .meta-item:last-child { border-right: none; }
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .meta-value {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ── LAYOUT ── */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 48px 0 0;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted2);
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── STRATEGY BLOCK ── */
+  .strategy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .strategy-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 70%);
+  }
+  .strategy-card p {
+    color: #b5b3ac;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 780px;
+  }
+  .strategy-card p + p { margin-top: 14px; }
+
+  /* ── PILLARS ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .pillar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    position: relative;
+  }
+  .pillar-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-bottom: 14px;
+  }
+  .pillar.edu .pillar-dot { background: var(--tag-edu); }
+  .pillar.trust .pillar-dot { background: var(--tag-trust); }
+  .pillar.trend .pillar-dot { background: var(--tag-trend); }
+  .pillar h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+  .pillar p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .pillar-count {
+    position: absolute;
+    top: 24px; right: 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted2);
+  }
+
+  /* ── LOGISTICS ── */
+  .logistics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .logistics-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+  }
+  .logistics-card h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .logistics-card .val {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .logistics-card .sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ── WHAT TO BRING ── */
+  .bring-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .bring-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .bring-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--accent-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .bring-text h5 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .bring-text p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── SCRIPTS ── */
+  .scripts-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .script-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .script-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .script-header:hover { background: var(--surface2); }
+  .script-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .script-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    width: 24px;
+  }
+  .script-title {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .script-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .tag-edu { background: rgba(60,170,255,0.1); color: var(--tag-edu); }
+  .tag-trust { background: rgba(167,139,250,0.1); color: var(--tag-trust); }
+  .tag-trend { background: rgba(251,146,60,0.1); color: var(--tag-trend); }
+
+  .chevron {
+    color: var(--muted2);
+    font-size: 12px;
+    transition: transform 0.25s;
+  }
+  .script-card.open .chevron { transform: rotate(180deg); }
+
+  .script-body {
+    display: none;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .script-card.open .script-body { display: block; }
+
+  .script-goal {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .script-goal-text {
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .script-visual-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 6px;
+  }
+  .script-visual-text {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .script-text-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 10px;
+  }
+  .script-text {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 14px;
+    color: #c5c3bc;
+    line-height: 1.85;
+    font-style: italic;
+  }
+
+  /* ── FORMAT NOTES ── */
+  .format-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .format-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .format-card h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+  .format-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── NOTES BLOCK ── */
+  .notes-block {
+    background: var(--accent-dim);
+    border: 1px solid rgba(212,255,60,0.15);
+    border-radius: 10px;
+    padding: 24px 28px;
+  }
+  .notes-block h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .notes-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .notes-block li {
+    font-size: 14px;
+    color: #b5b3ac;
+    display: flex;
+    gap: 10px;
+  }
+  .notes-block li::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted2);
+    letter-spacing: 0.1em;
+  }
+  .footer-note {
+    font-size: 12px;
+    color: var(--muted2);
+  }
+
+  @media (max-width: 768px) {
+    .hero, .main, .footer { padding-left: 24px; padding-right: 24px; }
+    .meta-item { padding: 16px 24px; }
+    .pillars, .logistics-grid, .bring-list, .format-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Shoot Brief — Session 01</div>
+  <h1>Real Deal Property<br><em>First Shoot.</em></h1>
+  <p class="hero-sub">Everything you need before Wednesday. Read through the scripts, come dressed in two outfit changes, and we'll handle the rest.</p>
+</div>
+
+<!-- META STRIP -->
+<div class="meta-strip">
+  <div class="meta-item">
+    <div class="meta-label">Date</div>
+    <div class="meta-value">Wednesday 1 April 2026</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Time</div>
+    <div class="meta-value">12:00 PM — 5:00 PM</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Location</div>
+    <div class="meta-value">56/23 Chambers Road, Altona North</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Session Focus</div>
+    <div class="meta-value">10 Education Reels + 10 Trending</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Format</div>
+    <div class="meta-value">Talking Head (Studio)</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- STRATEGY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Why we're building this</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="strategy-card">
+      <p>Your Meta ads are pulling leads at $45 CPL but lead quality is the problem, not volume. When someone sees an ad cold with zero prior exposure to you, a form is the only filter between your team and a wasted phone call. A form isn't enough to find someone sitting on $60k in equity who's actually ready to move.</p>
+      <p>The 30 reels we're building change that equation. Each one is designed to educate the exact investor you want working Australians who understand yield, have equity, and are ready to act. Someone who watches three of these and still books a call is a fundamentally different lead to someone who clicked on impulse.</p>
+      <p>This also feeds your ad performance directly. Engaged video viewers become your strongest seed audience for lookalikes. Your ad spend starts finding more people who look like your best clients instead of anyone broadly interested in property.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar edu">
+        <div class="pillar-dot"></div>
+        <span class="pillar-count">Reels 1–10</span>
+        <h3>Education</h3>
+        <p>Middle funnel. This is where real selling happens. People who find you here want to know if Real Deal is actually the real deal. These reels answer every question before the call.</p>
+      </div>
+      <div class="pillar trust">
+        <div class="pillar-dot"></div>
+        <span class="pillar-count">Reels 11–20</span>
+        <h3>Trust and Credibility</h3>
+        <p>Results, process, proof. Your best existing asset (the Eddington Street video) showed what happens when content is real and specific. These reels replicate that at scale.</p>
+      </div>
+      <div class="pillar trend">
+        <div class="pillar-dot"></div>
+        <span class="pillar-count">Reels 21–30</span>
+        <h3>Trending Formats</h3>
+        <p>Top funnel reach and discoverability. POV, before and after, comment response. These earn organic reach and bridge warm audiences toward a booking.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGISTICS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Session logistics</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="logistics-grid">
+      <div class="logistics-card">
+        <h4>What we're filming today</h4>
+        <div class="val">20 Reels</div>
+        <div class="sub">10 Education reels and 10 Trending format reels. All filmed in our studio downstairs using teleprompter. We coach delivery — you won't sound like a robot.</div>
+      </div>
+      <div class="logistics-card">
+        <h4>Estimated time</h4>
+        <div class="val">3–4 hours</div>
+        <div class="sub">Education block takes around 3 hours. Trending formats roughly 2 hours. We batch them back to back so you only need the one trip down.</div>
+      </div>
+      <div class="logistics-card">
+        <h4>Next shoot (Session 02)</h4>
+        <div class="val">Week of 7 April</div>
+        <div class="sub">The remaining 10 Trust reels filmed in a boardroom setting. We'll send a separate calendar invite once the space is locked.</div>
+      </div>
+      <div class="logistics-card">
+        <h4>Go live</h4>
+        <div class="val">Content starts posting</div>
+        <div class="sub">We'll begin rolling content as soon as editing is done. First month we want momentum. No gaps. Mix of new reels with whatever existing content works.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT TO BRING -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">What to bring</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="bring-list">
+      <div class="bring-item">
+        <div class="bring-icon">👔</div>
+        <div class="bring-text">
+          <h5>Two outfit changes</h5>
+          <p>We're batching 20 reels in one day. Bring two completely different looks so your feed doesn't look like one long day of filming. Smart casual works well. Think Calibre.</p>
+        </div>
+      </div>
+      <div class="bring-item">
+        <div class="bring-icon">🧠</div>
+        <div class="bring-text">
+          <h5>Familiarity with the scripts</h5>
+          <p>You don't need to memorise anything. Teleprompter is set up. But reading the scripts below before you arrive means delivery will feel natural, not mechanical.</p>
+        </div>
+      </div>
+      <div class="bring-item">
+        <div class="bring-icon">⚡</div>
+        <div class="bring-text">
+          <h5>Energy and some snacks</h5>
+          <p>Filming days are long. Eat before you come, bring something to keep energy up between takes. We've been warned you get hungry.</p>
+        </div>
+      </div>
+      <div class="bring-item">
+        <div class="bring-icon">📱</div>
+        <div class="bring-text">
+          <h5>Your existing raw footage</h5>
+          <p>You mentioned 70 statics and raw video from previous shoots. If you can share that with us beforehand we can start preparing existing assets to go live while we edit the new ones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Today's scripts — Education reels</h2>
+      <div class="section-line"></div>
+    </div>
+    <p style="font-size:14px; color:var(--muted); margin-bottom:24px;">Read through these before Wednesday. Flag anything that doesn't sound like you. These are a starting point — we'll refine delivery on the day and anything that feels off, we change it together.</p>
+
+    <div class="scripts-stack">
+
+      <!-- Script 1 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">01</span>
+            <span class="script-title">The Pocket Professional</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">Hyper-local market insight. Position Jake as the person who knows what pricing is actually doing, not what the headline data says.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Talking head in studio. Text overlays with suburb name and specific price range. Clean, data-led feel.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"If you're buying in [Suburb Name] in 2026, here's what pricing is actually doing. Not the broad Melbourne average. Not the Domain headline. The specific 500 metre radius where the deals are. I'm seeing [specific price example] for [property type], and here's what that gets you versus six months ago. Most buyers don't know this until after they've already made a mistake. That's the job."</div>
+        </div>
+      </div>
+
+      <!-- Script 2 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">02</span>
+            <span class="script-title">The Silent Sale</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">Prove the off-market network exists and is real. Turn the abstract idea of "connections" into something tangible and visual.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Walking shot through a property. B-roll of keys, front door. POV feel. Could work well in the podcast studio as a sit-down version too.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"POV: you just bought a four-bedroom in [Suburb] and not a single person walked through an open home. No auction, no stress, no best-and-final-offer panic. This was a silent sale. The owner wanted a discreet exit and my client was ready to move. This is why you hire an advocate. We open doors that don't have for sale signs on them."</div>
+        </div>
+      </div>
+
+      <!-- Script 3 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">03</span>
+            <span class="script-title">Stop Checking REA</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">Address the number one fear of overpaying. Reframe what "looking for property" actually means and why the public market is already too late.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Jake walking toward camera in a busy street or in front of a recently sold sign. Strong hook energy. Fast cut to B-roll of a kitchen or living space.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"Stop checking Realestate.com.au every ten minutes. If a property is public, you're already competing with 50 other people and a potential bidding war. In 2026, the best deals aren't on your phone. They're in the contacts list of a Buyer's Advocate. Here's how we found a home for our last client $40,000 under bank valuation..."</div>
+        </div>
+      </div>
+
+      <!-- Script 4 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">04</span>
+            <span class="script-title">The Red Flag PSA</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">Build trust through insider knowledge. Show what Jake sees that a buyer walking through alone would miss entirely.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Can be green screen or studio talking head. Text callouts work really well here — number one, number two, number three on screen as Jake lists them.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"I'm a Buyer's Advocate and here are three things that look great in photos but are massive red flags in person. Number one: fresh paint in only one corner of a room. Usually hiding a leak. Number two: low-maintenance garden listed in the description. That means zero privacy. Number three: north-facing windows blocked by the neighbour's extension. Don't fall for the staging. Look for the structure."</div>
+        </div>
+      </div>
+
+      <!-- Script 5 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">05</span>
+            <span class="script-title">Off-Market Proof</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">Exclusivity and show-don't-tell. Make the off-market concept feel real by anchoring it in a result.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Client holding keys in front of a high-end property. Or Jake holding keys. Visual proof first, explanation second.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"Six weeks ago this family was ready to give up. They'd lost four auctions and were exhausted. Today they're moving into a home that wasn't even on the market when we started. We found the property, handled the building inspection, negotiated the price, and secured the keys — all while they spent their weekends at the beach instead of at open homes. If you're over the Saturday stress, let's chat."</div>
+        </div>
+      </div>
+
+      <!-- Script 6 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">06</span>
+            <span class="script-title">Is It Worth the Fee?</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">Handle the price objection head-on before the sales call. Someone who's already done this math in their head will book faster and ghost less.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Jake sitting in a cafe or relaxed environment. Approachable tone, not a pitch. This one lands better when it feels like a genuine conversation.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"The most common question I get: is a Buyer's Advocate worth the fee? Let's do the math. If I save you three months of searching, ten wasted building reports, and negotiate $30,000 off the asking price — did I cost you money or did I save you money? My job isn't just to find a house. It's to protect your equity from day one."</div>
+        </div>
+      </div>
+
+      <!-- Script 7 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">07</span>
+            <span class="script-title">What Does Your Budget Actually Buy?</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">Direct lead generation. Get people to raise their hand by speaking to a specific budget bracket. CTA-forward.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Jake leaning against a car or walking into an office. Confident, direct energy. End on camera talking directly to the viewer.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"What does $1.2 million actually buy you in Melbourne right now? Most people think they're priced out. They're just looking in the wrong pockets. If you're tired of being the runner-up at auctions, DM me the word STRATEGY. I'll send you a custom breakdown of where the smart money is moving this month."</div>
+        </div>
+      </div>
+
+      <!-- Script 8 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">08</span>
+            <span class="script-title">Stop Buying Where You Want to Live</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">Attract investors and rentvest buyers. This is Real Deal's cash flow and yield-first philosophy made accessible in one video.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Jake in front of a map or a laptop showing growth data. Green screen works well here. Strong contrarian energy from the hook.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"Stop buying property where you want to live and start buying where people have to live. Most buyers let emotion drive their $1 million decision. They like the kitchen splashback or the cafe down the road. As a Buyer's Advocate, I ignore the vibes and look at vacancy rates, infrastructure pipelines, and yield. If you want a home, buy with your heart. If you want an asset, buy with my data."</div>
+        </div>
+      </div>
+
+      <!-- Script 9 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">09</span>
+            <span class="script-title">The Selling Agent Secret</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">Position Jake as the buyer's shield against high-pressure tactics. This one earns saves and shares because it feels like insider information being given away.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Jake leaning against a for sale sign or walking through a front gate. The visual irony reinforces the message.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"Here's a secret the selling agent won't tell you: they aren't working for you. Their legal job is to get the highest possible price for the vendor. And they are experts at creating artificial urgency. The best-and-final-offer deadline is designed to make you panic and overpay. My job is to be the filter. I take the emotion out of the room, look at the comparable sales, and tell you exactly when to walk away. Don't go into a negotiation unarmed."</div>
+        </div>
+      </div>
+
+      <!-- Script 10 -->
+      <div class="script-card" onclick="toggle(this)">
+        <div class="script-header">
+          <div class="script-header-left">
+            <span class="script-num">10</span>
+            <span class="script-title">The Lifestyle Transformation</span>
+            <span class="script-tag tag-edu">Education</span>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-goal">Goal</div>
+          <div class="script-goal-text">High emotional impact close. This is the happy ending reel. It's the one people send to their partner. Lead with outcome, end with CTA.</div>
+          <div class="script-visual-label">Visual</div>
+          <div class="script-visual-text">Jake handing keys to a happy couple in front of a front door. If we use a stand-in we blur faces. Strong B-roll moment. Warm colour grade.</div>
+          <div class="script-text-label">Script</div>
+          <div class="script-text">"This is why I do what I do. Six weeks ago this family was ready to give up. They'd lost four auctions and were exhausted. Today they're moving into a home that wasn't even on the market when we started. We found the property, handled the building inspection, negotiated the price, and secured the keys — all while they spent their weekends at the beach instead of at open homes. If you're over the Saturday stress, let's chat. Your new lifestyle starts with a better strategy."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TRENDING SECTION NOTE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Today's scripts — Trending formats</h2>
+      <div class="section-line"></div>
+    </div>
+    <p style="font-size:14px; color:var(--muted); margin-bottom:24px;">These are shorter, faster, platform-native formats. Less scripted, more energy-led. We'll coach these on the day based on what's working on Reels right now. No teleprompter needed for most of these.</p>
+
+    <div class="format-grid">
+      <div class="format-card">
+        <h4>Opinionated Statement</h4>
+        <p>Jake takes a strong contrarian stance on something in the property market. No softening. One punchy claim, hold it. Examples: yield over capital growth, why auctions are a trap, why 95% of buyer's agents are lazy.</p>
+      </div>
+      <div class="format-card">
+        <h4>POV Format</h4>
+        <p>Viewer is placed inside the experience of buying with Real Deal. Written as if it's already happened. "POV: you just bought off-market without attending a single open home." Aspirational and specific.</p>
+      </div>
+      <div class="format-card">
+        <h4>Comment Response</h4>
+        <p>Jake responds to a real or simulated question from a follower. Works well because it's reactive, natural, and signals an active community. We'll pull questions from the comments on existing posts.</p>
+      </div>
+      <div class="format-card">
+        <h4>Before and After</h4>
+        <p>Before: what the client believed before working with Real Deal. After: what they know now and what they got. Fast cuts. Specific numbers. The guarantee USP is powerful here.</p>
+      </div>
+      <div class="format-card">
+        <h4>Green Screen Data Drop</h4>
+        <p>Jake talks over a market chart, suburb breakdown, or data visual. Makes abstract numbers feel real and positions Real Deal as the team that actually knows what the data says.</p>
+      </div>
+      <div class="format-card">
+        <h4>The Guarantee Reel</h4>
+        <p>One full reel dedicated to the buyback guarantee and fee refund offer. Nobody else in the space is doing this. This should be direct, confident, and completely free of hedging language.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">A few things to keep in mind</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="notes-block">
+      <h4>From Divina</h4>
+      <ul>
+        <li>You don't need to memorise anything. Teleprompter is set up. Read it naturally, we'll cut the pauses.</li>
+        <li>If a script doesn't sound like you, say so on the day. We'd rather know then than find out in editing.</li>
+        <li>The goal isn't perfect takes. It's real delivery. One stumble and reset is better than a stiff flawless read.</li>
+        <li>Bring the real deal energy from the call. The board stuff loses people. You talking directly, confidently, with numbers — that's what converts.</li>
+        <li>Sub 59 second content is covered. We're building everything so it can be boosted as well as posted organically.</li>
+        <li>Share any raw footage you have before Wednesday if you can. We'll start preparing it in parallel.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">MD MEDIA — Real Deal Property — Session 01</div>
+  <div class="footer-note">Questions before Wednesday? Message Divina directly.</div>
+</div>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
